@@ -4,6 +4,7 @@ import {getMovies} from "../omdbapi.js";
 export default function Search() {
     const [searchTerm, setSearchTerm] = useState("");
     const [lastTypedTime, setLastTypedTime] = useState(Date.now());
+    const [error, setError] = useState(true);
 
     const [movies, setMovies] = useState(null);
 
@@ -26,8 +27,15 @@ export default function Search() {
     }, [searchTerm, lastTypedTime]);
 
     const handleInputChange = (event) => {
-        setSearchTerm(event.target.value);
         setLastTypedTime(Date.now());
+        setSearchTerm(event.target.value);
+
+        if (searchTerm.length <= 2) {
+            setMovies(null);
+            setError(true);
+        } else {
+            setError(false);
+        }
     };
 
     return (
@@ -35,8 +43,10 @@ export default function Search() {
             <div className={"flex flex-col gap-4"}>
                 <h1 className={"text-6xl font-bold"}>Rechercher un film</h1>
 
+                <p className={"text-red-500"}>{error && "Veuillez entrer au moins 3 caractères"}</p>
                 <label className="input input-bordered flex items-center gap-4 text-2xl max-w-xl">
-                    <input type="text" className="grow" placeholder="Rechercher un film" value={searchTerm}
+                    <input id={"search"} type="text" className="grow" placeholder="Rechercher un film"
+                           value={searchTerm}
                            onChange={handleInputChange}/>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
