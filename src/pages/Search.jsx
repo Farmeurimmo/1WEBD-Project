@@ -23,6 +23,7 @@ export default function Search() {
 
     useEffect(() => {
         setMovies(null);
+        setPage(1);
         handleSearch(true);
     }, [page]);
 
