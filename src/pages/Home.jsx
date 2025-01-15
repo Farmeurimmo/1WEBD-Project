@@ -13,7 +13,7 @@ export default function Home() {
     }
 
     return (
-        <div className={"p-4"}>
+        <div className={"p-4 min-w-[400px]"}>
             <h1 className={"text-6xl font-bold"}>Films tendances</h1>
             <ul className="flex flex-wrap gap-6 m-6">
                 {movies && movies.Search && movies.Search.map(movie => (

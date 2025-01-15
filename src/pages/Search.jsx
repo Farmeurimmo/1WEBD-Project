@@ -7,11 +7,10 @@ export default function Search() {
     const [error, setError] = useState(false);
     const [totalResults, setTotalResults] = useState(0);
     const [page, setPage] = useState(1);
-    const [movies, setMovies] = useState(null);
+    const [movies, setMovies] = useState([]);
     const [requesting, setRequesting] = useState(false);
 
     const DEBOUNCE_DELAY = 250;
-    const ITEMS_PER_PAGE = 10;
 
     useEffect(() => {
         const handler = setTimeout(() => {
@@ -19,8 +18,6 @@ export default function Search() {
                 handleSearch(false);
             } else {
                 setPage(1);
-
-                // No need to handle search because it will be triggered by the page change
             }
         }, DEBOUNCE_DELAY);
 
@@ -28,27 +25,28 @@ export default function Search() {
     }, [searchTerm, lastTypedTime]);
 
     useEffect(() => {
-        setMovies(null);
-        handleSearch(true);
+        if (page > 1) {
+            handleSearch(true);
+        }
     }, [page]);
 
     const handleSearch = (urgent) => {
         if (urgent || Date.now() - lastTypedTime >= DEBOUNCE_DELAY) {
-            setMovies(null);
-            if (urgent || searchTerm.length > 2) {
-                setRequesting(true);
-
-                getMovies(searchTerm, page).then(data => {
-                    setMovies(data);
-                    if (data) {
-                        setTotalResults(parseInt(data.totalResults));
-                    }
-                    setRequesting(false);
-                }).catch(() => {
-                    setError(true);
-                    setRequesting(false);
-                });
-            }
+            setRequesting(true);
+            getMovies(searchTerm, page).then(data => {
+                if (page === 1) {
+                    setMovies(data ? data.Search : []);
+                } else {
+                    setMovies(prevMovies => [...prevMovies, ...(data ? data.Search : [])]);
+                }
+                if (data) {
+                    setTotalResults(parseInt(data.totalResults));
+                }
+                setRequesting(false);
+            }).catch(() => {
+                setError(true);
+                setRequesting(false);
+            });
         }
     };
 
@@ -58,56 +56,12 @@ export default function Search() {
         setError(event.target.value.length <= 2);
     };
 
-    const generatePagination = () => {
-        const totalPages = Math.ceil(totalResults / ITEMS_PER_PAGE);
-        const pagination = [];
-        const maxPagesToShow = 5;
-        const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
-
-        let startPage = Math.max(1, page - halfMaxPagesToShow);
-        let endPage = Math.min(totalPages, page + halfMaxPagesToShow);
-
-        if (page - halfMaxPagesToShow <= 0) {
-            endPage = Math.min(totalPages, endPage + (halfMaxPagesToShow - page + 1));
-        }
-
-        if (page + halfMaxPagesToShow > totalPages) {
-            startPage = Math.max(1, startPage - (page + halfMaxPagesToShow - totalPages));
-        }
-
-        for (let i = startPage; i <= endPage; i++) {
-            pagination.push(
-                <button
-                    key={i}
-                    className={`btn join-item ${i === page ? "btn-primary" : "btn-secondary"}`}
-                    onClick={() => setPage(i)}
-                >
-                    {i}
-                </button>
-            );
-        }
-
-        if (startPage > 1) {
-            if (startPage > 2) {
-                pagination.unshift(<button className="btn join-item">...</button>);
-            }
-            pagination.unshift(<button key={1} className="join-item btn btn-secondary"
-                                       onClick={() => setPage(1)}>1</button>);
-        }
-
-        if (endPage < totalPages) {
-            if (endPage < totalPages - 1) {
-                pagination.push(<button className="btn join-item">...</button>);
-            }
-            pagination.push(<button key={totalPages} className="btn join-item btn-secondary"
-                                    onClick={() => setPage(totalPages)}>{totalPages}</button>);
-        }
-
-        return pagination;
+    const loadMore = () => {
+        setPage(prevPage => prevPage + 1);
     };
 
     return (
-        <div className={"p-4"}>
+        <div className={"p-4 min-w-[400px]"}>
             <div className={"flex flex-col gap-4"}>
                 <h1 className={"text-6xl font-bold"}>Rechercher un film</h1>
                 <p className={"text-red-500"}>{error && "Veuillez entrer au moins 3 caractères"}</p>
@@ -129,8 +83,8 @@ export default function Search() {
                 <ul className="flex flex-wrap gap-6 m-6">
                     {requesting && <span className="loading loading-spinner loading-lg"></span>}
 
-                    {movies && movies.Search && movies.Search.length > 0 ? (
-                        movies.Search.map(movie => (
+                    {movies && movies.length > 0 ? (
+                        movies.map(movie => (
                             <li className="card bg-base-300 w-80 max-w-xl shadow-xl flex-grow rounded-2xl hover:shadow-2xl hover:scale-105 transition-transform"
                                 key={movie.imdbID}>
                                 <figure>
@@ -153,9 +107,13 @@ export default function Search() {
                         </div>
                     )}
                 </ul>
-                <div className={"flex join"}>
-                    {generatePagination()}
-                </div>
+                {movies && movies.length < totalResults && (
+                    <div className={"mx-6"}>
+                        <div className={"flex flex-wrap w-full"}>
+                            <button className="btn btn-primary w-full font-bold" onClick={loadMore}>Load More</button>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
