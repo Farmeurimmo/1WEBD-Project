@@ -17,7 +17,7 @@ export default function Home() {
             <h1 className={"text-6xl font-bold"}>Films tendances</h1>
             <ul className="flex flex-wrap gap-6 m-6">
                 {movies && movies.Search && movies.Search.map(movie => (
-                    <li className="card bg-base-300 w-80 shadow-xl flex-grow rounded-2xl hover:shadow-2xl hover:scale-105 transition-transform"
+                    <li className="card bg-base-300 w-80 max-w-xl shadow-xl flex-grow rounded-2xl hover:shadow-2xl hover:scale-105 transition-transform"
                         key={movie.imdbID}>
                         <figure>
                             <img
@@ -30,7 +30,10 @@ export default function Home() {
                             <h2 className="text-3xl font-bold">
                                 {movie.Title}
                             </h2>
-                            <div className="badge badge-secondary">Tendances</div>
+                            <div className={"flex flex-wrap gap-2"}>
+                                <div className="badge badge-secondary">Tendances</div>
+                                <div className="badge badge-secondary">{movie.Year}</div>
+                            </div>
                             <p>{movie.description}</p>
                         </div>
                     </li>

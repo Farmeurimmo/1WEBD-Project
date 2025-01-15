@@ -7,7 +7,12 @@ export async function getMovies(searchTerm, page = 1) {
         return null;
     }
     if (data.Search) {
-        data.Search = data.Search.filter(movie => movie.Poster !== "N/A");
+        data.Search = data.Search.map(movie => {
+            if (movie.Poster === "N/A") {
+                movie.Poster = "/poster_empty.png";
+            }
+            return movie;
+        });
     }
     return data;
 }
