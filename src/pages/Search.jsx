@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {getMovies} from "../omdbapi.js";
+import MovieCard from "../components/MovieCard.jsx";
 
 export default function Search() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -80,24 +81,12 @@ export default function Search() {
                 {!requesting && (
                     <p className={"text-2xl"}>{totalResults} résultats</p>
                 )}
-                <ul className="flex flex-wrap gap-6 m-6">
+                <div className="flex flex-wrap gap-6 m-6">
                     {requesting && <span className="loading loading-spinner loading-lg"></span>}
 
                     {movies && movies.length > 0 ? (
                         movies.map(movie => (
-                            <li className="card bg-base-300 w-80 max-w-xl shadow-xl flex-grow rounded-2xl hover:shadow-2xl hover:scale-105 transition-transform"
-                                key={movie.imdbID}>
-                                <figure>
-                                    <img src={movie.Poster === "N/A" ? "https://http.cat/404.jpg" : movie.Poster}
-                                         alt={movie.Title}
-                                         className="rounded-t-2xl flex flex-grow w-full h-[500px] object-cover"/>
-                                </figure>
-                                <div className="p-4 space-y-4">
-                                    <h2 className="text-3xl font-bold">{movie.Title}</h2>
-                                    <div className="badge badge-secondary">{movie.Year}</div>
-                                    <p>{movie.description}</p>
-                                </div>
-                            </li>
+                            <MovieCard key={movie.imdbID} movie={movie}/>
                         ))
                     ) : !requesting && (
                         <div className="card bg-base-300 w-80 shadow-xl flex-grow rounded-2xl">
@@ -106,7 +95,7 @@ export default function Search() {
                             </div>
                         </div>
                     )}
-                </ul>
+                </div>
                 {movies && movies.length < totalResults && (
                     <div className={"mx-6"}>
                         <div className={"flex flex-wrap w-full"}>
