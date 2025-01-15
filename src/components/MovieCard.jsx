@@ -1,6 +1,6 @@
 export default function MovieCard({movie}) {
     return (
-        <a className="card bg-base-300 w-80 max-w-xl shadow-xl flex-grow rounded-2xl hover:shadow-2xl hover:scale-105 transition-transform cursor-pointer"
+        <a className="card bg-base-300 w-80 max-w-xl shadow-xl flex-grow rounded-2xl hover:shadow-2xl hover:scale-105 transition-transform cursor-pointer text-white"
            key={movie.imdbID} href={`/movie?key=` + movie.imdbID}>
             <figure>
                 <img
