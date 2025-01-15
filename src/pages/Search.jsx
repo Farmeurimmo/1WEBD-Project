@@ -15,7 +15,13 @@ export default function Search() {
 
     useEffect(() => {
         const handler = setTimeout(() => {
-            handleSearch(false);
+            if (page === 1) {
+                handleSearch(false);
+            } else {
+                setPage(1);
+
+                // No need to handle search because it will be triggered by the page change
+            }
         }, DEBOUNCE_DELAY);
 
         return () => clearTimeout(handler);
@@ -23,7 +29,6 @@ export default function Search() {
 
     useEffect(() => {
         setMovies(null);
-        setPage(1);
         handleSearch(true);
     }, [page]);
 
