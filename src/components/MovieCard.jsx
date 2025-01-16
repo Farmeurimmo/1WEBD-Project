@@ -1,4 +1,4 @@
-export default function MovieCard({movie}) {
+export default function MovieCard({movie, tendance = false}) {
     return (
         <a className="card bg-base-300 w-80 max-w-xl shadow-xl flex-grow rounded-2xl hover:shadow-2xl hover:scale-105 transition-transform cursor-pointer text-white"
            key={movie.imdbID} href={`/movie?key=` + movie.imdbID}>
@@ -14,7 +14,7 @@ export default function MovieCard({movie}) {
                     {movie.Title}
                 </h2>
                 <div className={"flex flex-wrap gap-2"}>
-                    <div className="badge badge-secondary">Tendances</div>
+                    {tendance && <div className="badge badge-secondary">Tendances</div>}
                     <div className="badge badge-secondary">{movie.Year}</div>
                 </div>
                 <p>{movie.description}</p>

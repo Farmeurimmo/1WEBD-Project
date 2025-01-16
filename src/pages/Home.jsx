@@ -58,7 +58,7 @@ export default function Home() {
                 <div className="flex justify-center w-full"><span className="loading loading-lg"></span></div>}
             <div className="flex flex-wrap gap-6 m-6">
                 {movies && movies.Search && movies.Search.map(movie => (
-                    <MovieCard key={movie.imdbID} movie={movie}/>
+                    <MovieCard key={movie.imdbID} movie={movie} tendance={true}/>
                 ))}
             </div>
 
