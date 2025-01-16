@@ -1,4 +1,6 @@
-# 1WEBD-Project
+# 1WEBD-Project by Robin
+
+Link of the GitHub repository : https://github.com/Farmeurimmo/1WEBD-Project
 
 ## Running the project
 
@@ -12,5 +14,5 @@ Then you can run the following commands:
 
 ```bash
 pnpm i
-pnpm dev
+pnpm dev --open
 ```
