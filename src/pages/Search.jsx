@@ -32,7 +32,11 @@ export default function Search() {
     }, [page]);
 
     const handleSearch = (urgent) => {
-        if (urgent || Date.now() - lastTypedTime >= DEBOUNCE_DELAY) {
+        if (searchTerm.length <= 2) {
+            setMovies(null);
+            return;
+        }
+        if ((urgent || Date.now() - lastTypedTime >= DEBOUNCE_DELAY) && !requesting) {
             setRequesting(true);
             getMovies(searchTerm, page).then(data => {
                 if (page === 1) {
