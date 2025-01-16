@@ -103,7 +103,8 @@ export default function Search() {
                 {movies && movies.length < totalResults && (
                     <div className={"mx-6"}>
                         <div className={"flex flex-wrap w-full"}>
-                            <button className="btn btn-primary w-full font-bold" onClick={loadMore}>Load More</button>
+                            <button className="btn btn-primary w-full font-bold" onClick={loadMore}>Charger Plus
+                            </button>
                         </div>
                     </div>
                 )}

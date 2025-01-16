@@ -75,7 +75,7 @@ export default function Home() {
             {movies2024 && movies2024.length < totalResults.current && (
                 <div className="mx-6">
                     <div className="flex justify-center w-full">
-                        <button className="btn btn-primary w-full font-bold" onClick={loadMore}>Load More</button>
+                        <button className="btn btn-primary w-full font-bold" onClick={loadMore}>Charger Plus</button>
                     </div>
                 </div>
             )}
