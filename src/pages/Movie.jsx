@@ -84,7 +84,7 @@ export default function Movie() {
 
                         <div className="w-full md:w-1/2 flex">
                             <img src={movie?.Poster} alt={movie?.Title}
-                                 className="rounded-lg shadow-md w-full h-auto max-h-[600px] object-fill"/>
+                                 className="rounded-lg shadow-md w-full h-auto max-h-[700px] object-fill"/>
                         </div>
                     </div>
 
