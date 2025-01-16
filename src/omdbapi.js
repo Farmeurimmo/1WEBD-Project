@@ -16,3 +16,12 @@ export async function getMovies(searchTerm, page = 1) {
     }
     return data;
 }
+
+export async function getMovie(omdbID, plot = "full") {
+    const response = await fetch('https://www.omdbapi.com/?i=' + omdbID + '&apikey=' + API_KEY + '&plot=' + plot);
+    const data = await response.json();
+    if (data.Response === "False") {
+        return null;
+    }
+    return data;
+}
