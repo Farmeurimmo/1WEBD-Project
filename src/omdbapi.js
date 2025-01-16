@@ -23,5 +23,8 @@ export async function getMovie(omdbID, plot = "full") {
     if (data.Response === "False") {
         return null;
     }
+    if (data.Poster === "N/A") {
+        data.Poster = "/poster_empty.png";
+    }
     return data;
 }
