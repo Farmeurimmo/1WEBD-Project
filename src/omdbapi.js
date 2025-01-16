@@ -28,3 +28,20 @@ export async function getMovie(omdbID, plot = "full") {
     }
     return data;
 }
+
+export async function getMoviesFrom2024(page = 1) {
+    const response = await fetch('https://www.omdbapi.com/?s=2024&apikey=' + API_KEY + '&type=movie&y=2024&page=' + page);
+    const data = await response.json();
+    if (data.Response === "False") {
+        return null;
+    }
+    if (data.Search) {
+        data.Search = data.Search.map(movie => {
+            if (movie.Poster === "N/A") {
+                movie.Poster = "/poster_empty.png";
+            }
+            return movie;
+        });
+    }
+    return data;
+}
