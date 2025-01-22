@@ -38,6 +38,7 @@ export default function Search() {
         }
         if ((urgent || Date.now() - lastTypedTime >= DEBOUNCE_DELAY) && !requesting) {
             setRequesting(true);
+            setMovies([]);
             getMovies(searchTerm, page).then(data => {
                 if (page === 1) {
                     setMovies(data ? data.Search : []);
@@ -46,6 +47,10 @@ export default function Search() {
                 }
                 if (data) {
                     setTotalResults(parseInt(data.totalResults));
+                } else if (data === 0) {
+                    setTotalResults(-1);
+                } else {
+                    setTotalResults(0);
                 }
                 setRequesting(false);
             }).catch(() => {
@@ -59,6 +64,10 @@ export default function Search() {
         setLastTypedTime(Date.now());
         setSearchTerm(event.target.value);
         setError(event.target.value.length <= 2);
+        if (event.target.value.length <= 2) {
+            setMovies(null);
+            setTotalResults(-1);
+        }
     };
 
     const loadMore = () => {
@@ -83,7 +92,13 @@ export default function Search() {
             </div>
             <div className={"p-4"}>
                 {!requesting && (
-                    <p className={"text-2xl"}>{totalResults} résultats</p>
+                    totalResults > 0 ? (
+                        <p className={"text-2xl"}>{totalResults} résultats</p>
+                    ) : totalResults === -1 ? (
+                        <p className={"text-2xl"}>Trop de résultats, veuillez affiner votre recherche</p>
+                    ) : (
+                        <p className={"text-2xl"}>Aucun résultat</p>
+                    )
                 )}
                 <div className="flex flex-wrap gap-6 m-6">
                     {requesting && <span className="loading loading-spinner loading-lg"></span>}

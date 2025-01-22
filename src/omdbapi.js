@@ -2,6 +2,9 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 
 function processMovies(data) {
     if (data.Response === "False") {
+        if (data.Error === "Too many results.") {
+            return 0;
+        }
         return null;
     }
     if (data.Search) {
