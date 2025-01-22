@@ -91,15 +91,9 @@ export default function Search() {
                 </label>
             </div>
             <div className={"p-4"}>
-                {!requesting && (
-                    totalResults > 0 ? (
-                        <p className={"text-2xl"}>{totalResults} résultats</p>
-                    ) : totalResults === -1 ? (
-                        <p className={"text-2xl"}>Trop de résultats, veuillez affiner votre recherche</p>
-                    ) : (
-                        <p className={"text-2xl"}>Aucun résultat</p>
-                    )
-                )}
+                {!requesting && totalResults > 0 ? (
+                    <p className={"text-2xl"}>{totalResults} résultats</p>
+                ) : null}
                 <div className="flex flex-wrap gap-6 m-6">
                     {requesting && <span className="loading loading-spinner loading-lg"></span>}
 
@@ -110,7 +104,14 @@ export default function Search() {
                     ) : !requesting && (
                         <div className="card bg-base-300 w-80 shadow-xl flex-grow rounded-2xl">
                             <div className="p-4 space-y-4">
-                                <h2 className="text-3xl font-bold">Aucun résultat</h2>
+                                {!requesting && (
+                                    totalResults === 0 ? (
+                                        <h2 className="text-3xl font-bold">Aucun résultat</h2>
+                                    ) : totalResults === -1 ? (
+                                        <h2 className="text-3xl font-bold">Trop de résultats, veuillez affinir votre
+                                            recherche</h2>
+                                    ) : null
+                                )}
                             </div>
                         </div>
                     )}
