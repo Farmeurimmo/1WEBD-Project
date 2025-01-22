@@ -16,7 +16,7 @@ function processMovies(data) {
 }
 
 export async function getMovies(searchTerm, page = 1) {
-    const response = await fetch('https://www.omdbapi.com/?s=' + searchTerm + '&apikey=' + API_KEY + '&type=movie&page=' + page);
+    const response = await fetch('https://www.omdbapi.com/?s=' + searchTerm.replace(' ', '%20') + '&apikey=' + API_KEY + '&type=movie&page=' + page);
     const data = await response.json();
     return processMovies(data);
 }
