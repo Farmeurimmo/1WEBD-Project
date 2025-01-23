@@ -6,7 +6,7 @@ export default function Search() {
     const [searchTerm, setSearchTerm] = useState("");
     const [lastTypedTime, setLastTypedTime] = useState(Date.now());
     const [error, setError] = useState(false);
-    const [totalResults, setTotalResults] = useState(0);
+    const [totalResults, setTotalResults] = useState(-1);
     const [page, setPage] = useState(1);
     const [movies, setMovies] = useState([]);
     const [requesting, setRequesting] = useState(false);
@@ -108,7 +108,7 @@ export default function Search() {
                                     totalResults === 0 ? (
                                         <h2 className="text-3xl font-bold">Aucun résultat</h2>
                                     ) : totalResults === -1 ? (
-                                        <h2 className="text-3xl font-bold">Trop de résultats, veuillez affinir votre
+                                        <h2 className="text-3xl font-bold">Trop de résultats, veuillez affiner votre
                                             recherche</h2>
                                     ) : null
                                 )}
