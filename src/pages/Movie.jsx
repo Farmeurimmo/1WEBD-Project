@@ -32,7 +32,6 @@ export default function Movie() {
 
             getMovie(imdbID)
                 .then(data => {
-                    console.log(data);
                     setMovie(data);
                 })
                 .catch(() => {
