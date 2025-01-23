@@ -66,7 +66,7 @@ export default function Search() {
         setError(event.target.value.length <= 2);
         if (event.target.value.length <= 2) {
             setMovies(null);
-            setTotalResults(-1);
+            setTotalResults(0);
         }
     };
 
