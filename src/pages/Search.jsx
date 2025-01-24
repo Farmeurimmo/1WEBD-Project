@@ -38,7 +38,9 @@ export default function Search() {
         }
         if ((urgent || Date.now() - lastTypedTime >= DEBOUNCE_DELAY) && !requesting) {
             setRequesting(true);
-            setMovies([]);
+            if (page === 1) {
+                setMovies([]);
+            }
             getMovies(searchTerm, page).then(data => {
                 if (page === 1) {
                     setMovies(data ? data.Search : []);
@@ -64,6 +66,7 @@ export default function Search() {
         setLastTypedTime(Date.now());
         setSearchTerm(event.target.value);
         setError(event.target.value.length <= 2);
+        setPage(1);
         if (event.target.value.length <= 2) {
             setMovies(null);
             setTotalResults(-1);
