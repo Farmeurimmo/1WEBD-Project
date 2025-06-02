@@ -7,8 +7,6 @@ Projet réalisé dans le cadre de ma formation à SUPINFO pour appliquer des com
 ## Contexte
 
 - Projet individuel ou binôme.
-- Livraison du code source complet.
-- Plagiat et usage d’IA interdits.
 - Code structuré sans variables globales.
 - Évaluation : fonctionnalités, qualité du code, Git, cahier des charges.
 
