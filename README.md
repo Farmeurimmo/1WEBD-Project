@@ -47,7 +47,7 @@ Les données sont issues de l’API **OMDb (The Open Movie Database)**.
 
 ## Cahier des charges
 
-### `index.html`
+### `index`
 
 - Afficher **au moins 3 films tendances**.
 - Pour chaque film :
@@ -57,7 +57,7 @@ Les données sont issues de l’API **OMDb (The Open Movie Database)**.
   - *(Bonus)* Un court résumé
 - Bouton pour charger plus de films de 2024
 
-### `search.html`
+### `search`
 
 - Contenu requis :
   - Une barre de recherche
@@ -68,7 +68,7 @@ Les données sont issues de l’API **OMDb (The Open Movie Database)**.
   - Le titre
   - Un lien vers la fiche film
 
-### `movie.html`
+### `movie`
 
 - Doit afficher :
   - Le titre du film
@@ -95,7 +95,6 @@ Les données sont issues de l’API **OMDb (The Open Movie Database)**.
 
 ## Critères Git
 
-- **25 points** attribués pour l’utilisation correcte de Git :
   - Dépôt GitHub distant avec lien dans `README.md`
   - Organisation claire des branches
   - Nommage explicite des commits (`feat:`, `fix:`, `refactor:`, etc.)
@@ -107,13 +106,3 @@ Les données sont issues de l’API **OMDb (The Open Movie Database)**.
 - Une clé API OMDb est requise (obtenue sur [omdbapi.com](https://www.omdbapi.com/apikey.aspx)).
 - Les titres doivent être saisis en anglais pour de meilleurs résultats (ex. : “Guardians of the Galaxy”).
 - Le projet met l’accent sur l’UX, l’interaction en temps réel et un code modulaire.
-
----
-
-## Livraison
-
-Le rendu final a été déposé sur Moodle au format archive `.zip`, contenant :
-
-- Le code source complet (HTML, CSS, JS/TS)
-- Un `README.md` décrivant le projet et le lien GitHub
-- Éléments annexes éventuels (icônes, images, etc.)
