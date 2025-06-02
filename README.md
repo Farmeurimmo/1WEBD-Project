@@ -2,7 +2,7 @@
 
 Note obtenue : **81.60/100**
 
-Ce projet a été réalisé dans le cadre de la formation SUPINFO, dans le but de mettre en pratique les compétences en
+Ce projet a été réalisé dans le cadre de ma formation  à SUPINFO, dans le but de mettre en pratique les compétences en
 développement front-end à travers un cas concret intégrant l’utilisation d’une API publique et le rendu dynamique de
 contenu.
 
@@ -117,5 +117,3 @@ Le rendu final a été déposé sur Moodle au format archive `.zip`, contenant :
 - Le code source complet (HTML, CSS, JS/TS)
 - Un `README.md` décrivant le projet et le lien GitHub
 - Éléments annexes éventuels (icônes, images, etc.)
-
-Ce projet a été noté dans le cadre du module de développement web front-end de **SUPINFO**.
