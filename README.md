@@ -1,108 +1,76 @@
-# Mini-Projet SUPINFO – Application Web de Cinéma
+# Mini-Projet SUPINFO – Application Web Cinéma
 
 Note obtenue : **81.60/100**
 
-Ce projet a été réalisé dans le cadre de ma formation  à SUPINFO, dans le but de mettre en pratique les compétences en
-développement front-end à travers un cas concret intégrant l’utilisation d’une API publique et le rendu dynamique de
-contenu.
+Projet réalisé dans le cadre de ma formation à SUPINFO pour appliquer des compétences front-end avec une API publique.
 
 ## Contexte
 
-- Projet individuel ou en binôme.
-- Livraison au format `.zip` contenant l'intégralité du code source.
-- Plagiat et recours à une IA interdits (note éliminatoire : 0/100).
-- Qualité du code exigée : pas de variables globales, structure claire.
-- Évaluation basée sur la fonctionnalité, la qualité du code, l'utilisation de Git, et le respect du cahier des charges.
+- Projet individuel ou binôme.
+- Livraison du code source complet.
+- Plagiat et usage d’IA interdits.
+- Code structuré sans variables globales.
+- Évaluation : fonctionnalités, qualité du code, Git, cahier des charges.
 
-## Running the project
+## Installation et lancement
 
-Vous devez créer un fichier `.env` à la racine du projet.
+Créer un fichier `.env` à la racine contenant :
 
 ```env
-VITE_API_KEY=your_api_key
+VITE_API_KEY=ta_clé_API_OMDb
 ```
 
-(remplacez `your_api_key` par votre clé API OMDb).
-
-Ensuite lancer ces commandes: (npm fonctionne aussi mais pnpm est recommandé)
+Ensuite, lancer :
 
 ```bash
 pnpm i
 pnpm dev --open
 ```
 
----
+(npm fonctionne aussi, pnpm recommandé)
 
 ## Objectif
 
-Développer une application web interactive permettant :
+Développer une application web permettant :
 
-1. D’afficher les films en tendance.
-2. De rechercher des films via une barre de recherche en direct.
-3. De consulter les détails d’un film sélectionné.
+- Afficher les films tendances.
+- Rechercher des films en temps réel.
+- Voir les détails d’un film.
 
-Les données sont issues de l’API **OMDb (The Open Movie Database)**.
+Les données proviennent de l’API OMDb.
 
----
+## Fonctionnalités principales
 
-## Cahier des charges
+### Page index
 
-### `index`
+- Affiche au moins 3 films tendances avec poster, titre, lien fiche détaillée.
+- Bouton pour charger plus de films de 2024.
+- Bonus : résumé court.
 
-- Afficher **au moins 3 films tendances**.
-- Pour chaque film :
-  - Son poster
-  - Son titre
-  - Un lien vers une fiche détaillée (`movie.html`)
-  - *(Bonus)* Un court résumé
-- Bouton pour charger plus de films de 2024
+### Page search
 
-### `search`
+- Barre de recherche avec résultats en temps réel.
+- Résultats affichent poster, titre, lien fiche film.
+- Bouton pour charger plus.
 
-- Contenu requis :
-  - Une barre de recherche
-  - Résultats affichés **en temps réel** (sans rechargement de page)
-  - Bouton pour afficher plus de résultats
-- Chaque résultat doit inclure :
-  - Le poster
-  - Le titre
-  - Un lien vers la fiche film
+### Page movie
 
-### `movie`
-
-- Doit afficher :
-  - Le titre du film
-  - Le poster
-  - Le résumé complet
-  - Le genre
-  - Les acteurs
-  - *(Bonus)* Notes obtenues
-  - *(Bonus)* Date de sortie DVD (format français : `jj/mm/aaaa`)
-
----
+- Affiche titre, poster, résumé complet, genre, acteurs.
+- Bonus : notes et date DVD format français.
 
 ## Contraintes techniques
 
-- Le projet doit être exécuté depuis un serveur HTTP local :
-  - Options possibles :
-    - Live Server (extension VS Code)
-    - `serve` via npm (script réutilisable des TP précédents)
-- Utilisation de plusieurs fichiers JS (ou TypeScript)
-  - Un fichier par page conseillé
-  - La logique partagée (ex. : authentification) doit être centralisée
+- Exécuter via serveur HTTP local (Live Server ou `serve`).
+- Code réparti en plusieurs fichiers JS/TS, un par page.
+- Logique partagée centralisée.
 
----
+## Git
 
-## Critères Git
-
-  - Dépôt GitHub distant avec lien dans `README.md`
-  - Organisation claire des branches
-  - Nommage explicite des commits (`feat:`, `fix:`, `refactor:`, etc.)
-
----
+- Dépôt GitHub public avec lien dans README.
+- Branches et commits clairs et explicites.
 
 ## Remarques
 
-- Une clé API OMDb est requise (obtenue sur [omdbapi.com](https://www.omdbapi.com/apikey.aspx)).
-- Les titres doivent être saisis en anglais pour de meilleurs résultats (ex. : “Guardians of the Galaxy”).
-- Le projet met l’accent sur l’UX, l’interaction en temps réel et un code modulaire.
+- Clé API OMDb obligatoire (https://www.omdbapi.com/apikey.aspx).
+- Recherche en anglais recommandée.
+- Priorité à l’UX, code modulaire, interactivité temps réel.
